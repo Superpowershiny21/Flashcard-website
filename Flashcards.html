@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Flashcards | Aesthetic Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      margin: 0;
+      background: #fff0f5;
+      color: #333;
+    }
+    header {
+      background: #ffb3c6;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      animation: fadeInDown 1.2s ease;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    nav {
+      background: #ffe0ec;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-bottom: 2px solid #ffb3c6;
+      animation: fadeIn 2s ease;
+    }
+    nav a {
+      text-decoration: none;
+      color: #d63384;
+      font-weight: bold;
+    }
+    .section {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeInUp 1s ease;
+    }
+    .section h2 {
+      text-align: center;
+      color: #d63384;
+      margin-bottom: 10px;
+    }
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .search-container input {
+      padding: 10px;
+      width: 60%;
+      border: 2px solid #ffb3c6;
+      border-radius: 10px;
+    }
+    .flashcard {
+      background: #fff9fb;
+      border: 2px solid #ffc0cb;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 10px 0;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.8s ease;
+    }
+    .flashcard:hover {
+      transform: scale(1.02);
+      background: #fff0f5;
+    }
+    .answer {
+      display: none;
+      margin-top: 10px;
+    }
+    footer {
+      background: #ffb3c6;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      animation: fadeIn 3s ease;
+    }
+    .icon {
+      margin-right: 8px;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <audio id="bg-music" loop>
+    <source src="good-night-lofi-cozy-chill-music-160166.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    document.body.addEventListener('click', function () {
+    document.getElementById('bg-music').play();
+    }, { once: true });
+  </script>
+
+  <header>
+    <h1><i class="fas fa-book-reader icon"></i> Study Flashcards</h1>
+    <p>꧁ ༺ ⚜ ༻ ꧂</p>
+  </header>
+  <nav>
+    <a href="#science"><i class="fas fa-flask icon"></i>Science</a>
+    <a href="#maths"><i class="fas fa-square-root-alt icon"></i>Maths</a>
+    <a href="#english"><i class="fas fa-pen-nib icon"></i>English</a>
+  </nav>
+
+  <div class="section" id="science">
+   <h2>
+ <img src="https://i.pinimg.com/736x/78/e1/42/78e142867f9588559e49d203abb5cd7e.jpg" alt="icon" style="width: 40px; height: 40px; border-radius: 50%; vertical-align: middle; margin-right: 8px;">
+  ⋆˙⟡.⋆Science Flashcards.⋆˙⟡
+ <img src="https://i.pinimg.com/736x/78/e1/42/78e142867f9588559e49d203abb5cd7e.jpg" alt="icon" style="width: 40px; height: 40px; border-radius: 50%; vertical-align: middle; margin-right: 8px;">
+   </h2>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search Science Cards...">
+    </div>
+    <div id="flashcards"></div>
+  </div>
+
+  <div class="section" id="maths">
+    <h2>-`♡´-Maths Flashcards-`♡´-</h2>
+   </h2>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search Math Cards...">
+    </div>
+    <div id="mathFlashcards"></div>
+  </div>
+
+  <div class="section" id="english">
+    <h2>⋆⭒˚.⋆English Flashcards⋆⭒˚.⋆</h2>
+   </h2>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search English Cards...">
+    </div>
+    <div id="englishFlashcards"></div>
+  </div>
+
+  <footer>
+    <p>&copy; ⋆｡ﾟ☁︎｡⋆｡ ﾟ☾ ﾟ｡⋆All rights reserved. BUT SERIOUSLY STUDY WELL⋆｡ﾟ☁︎｡⋆｡ ﾟ☾ ﾟ｡⋆</p>
+  </footer>
+
+  <script>
+    const scienceCards = [
+      { question: "What are the raw materials for photosynthesis?", answer: "Carbon dioxide, water, and sunlight" },
+      { question: "Where does photosynthesis happen?", answer: "In the Chloroplasts" },
+      { question: "What’s the word equation for photosynthesis?", answer: "Carbon dioxide + Water ⟶ Oxygen + Glucose" },
+      { question: "Why is sunlight important?", answer: "Plants trap the light from the sun and utilize the energy of the light" },
+      { question: "What do plants do with glucose?", answer: "They use it to create other substances like cellulose and startch" },
+      { question: "What gas is needed for photosynthesis?", answer: "Carbon dioxide" },
+      { question: "What’s the difference between breathing and respiration?", answer: "Respiration is a chemical process that takes place in cells to release energy. Breathing is the physical process where you inhale and exhale air in and out of your lungs." },
+      { question: "What are the organs of the excretory systen?", answer: "Renal vein, Kidneys, Ureter, Bladder, Urethra" },
+      { question: "What are cells like sperm cells and egg cells called?", answer: "Gametes ― not GEMATIES RITA😒" },
+      { question: "Which metal reacts the most violently with water?", answer: "Carbon dioxide" },
+      { question: "Metal oxide + Acid=?", answer: "Salt + Water" },
+      { question: "Displacement reaction formula?", answer: "A + BC = AC + B" },
+      { question: "What is the test for Hydrogen Gas?", answer: "A glowing splint will make a 'pop' sound" },
+      { question: "What is inheritance?", answer: "The passing of characteristics from parents to offsprings" },
+      { question: "What do chromosomes carry?", answer: "Genetic information in the form of DNA" },
+      { question: "Why are leaves thin and flat in most plants?", answer: "To maximise surface area for light absorbtion and gas exchange" },
+      { question: "Explain how particle arrangement affects the properties of solids and gases.", answer: "Solids have tightly packed particles—definite shape/volume. Gases have far-apart particles—no shape or volume" },
+      { question: "Describe how the kidneys maintain water balance", answer: "By filtering blood and adjusting water reabsorption depending on hydration level" },
+      { question: "Explain the trend in reactivity down Group 1 metals.", answer: "Reactivity increases because outer electrons are further from the nucleus and easier to lose" },
+      { question: "Why doesn’t copper react with hydrochloric acid?", answer: "Copper is less reactive than hydrogen, so it cannot displace it" },
+      { question: "How can you test metal reactivity using displacement?", answer: "A more reactive metal will displace a less reactive one from its salt solution." },
+      { question: "What is Density?", answer: "The amount of mass in a given volume of a substance. It tells you how tightly matter is packed together." },
+      { question: "What role do genes play in the inheritance of traits in organisms?", answer: "Parents pass on traits or characteristics, such as eye colour and blood type, to their children through their genes" },
+      { question: "A pregnant woman can't consume ...?", answer: "Drugs and Alcohol" },
+      { question: "Why should a woman watch what she eats during her pregnancy?", answer: "Bceause whatever goes into the woman's body, gets to the foetus" },
+      { question: "In a series circuit, the current is _________ throughout the entire circuit.", answer: "The same" },
+      { question: "What happens to the resistance in a parallel circuit as more branches are added?", answer: "The total resistance decreases" },
+      { question: "In a series circuit with three bulbs, why might the bulbs be dimmer than in a parallel circuit?", answer: "Because the voltage is shared and the current is lower, so each bulb gets less energy" },
+      { question: "What happens to the total current in a parallel circuit if you add another branch?", answer: "The total current increases" },
+      { question: "Explain why sound travels faster in solids than in gases, using particle theory.", answer: "Particles in solids are closely packed, so vibrations (sound energy) transfer more quickly from one particle to the next. In gases, particles are far apart, so the energy transfer is slower." },
+      { question: "Describe how an oscilloscope trace would change if a sound becomes louder but stays at the same pitch.", answer: "The wave’s amplitude increases (taller waves), but the frequency (spacing between waves) stays the same." },
+      { question: "Describe the process of star formation from a nebula, including the role of gravity and nuclear fusion.", answer: "Gravity pulls gas and dust together → forms a protostar. As it contracts, temperature and pressure increase. When hot enough, nuclear fusion starts (hydrogen into helium) → becomes a main sequence star." },
+      { question: "Why is a nebula considered both a “birthplace” and a “graveyard” of stars?", answer: "Stars form in nebulae. When massive stars die (supernova), they eject gas and dust back into space → creates new nebulae = life cycle restart." },
+      { question: "How does the age and pattern of rocks on either side of a mid-ocean ridge provide evidence for plate tectonics?", answer: "New crust forms at ridges. Older rocks are farther from the ridge. Magnetic stripes in rock match on both sides, showing symmetrical spreading." },
+      { question: "How do convection currents move tectonic plates?", answer: "Hot magma rises from the mantle, spreads under the crust, cools, and sinks again. This circular motion drags plates along with it." },
+      { question: "What is an ionic bond?", answer: "An ionic bond is the electrostatic attraction between positive and negative ions." },
+      { question: "Why do ionic compounds have high melting points?", answer: "Because of the strong electrostatic forces between oppositely charged ions that require a lot of energy to break." },
+      { question: "Why do covalent compounds not conduct electricity?", answer: "They don't have free-moving ions or electrons to carry the charge." },
+      { question: "Explain why graphite conducts electricity but diamond does not, even though both are made of carbon.", answer: "In graphite, each carbon is bonded to 3 others, so one electron per atom is delocalised and free to move. In diamond, all 4 electrons are bonded, so no free electrons = no conductivity." },
+      { question: "How can you find the volume of an irregular-shaped object?", answer: "Use a displacement can and measure how much water is displaced." },
+      { question: "Why is steel used for ship hulls even though it is denser than water?", answer: "Because the ship’s overall shape contains air, reducing its average density so it can float." },
+      { question: "What is the function of the excretory system?", answer: "To remove waste products from the body (e.g., urea, carbon dioxide)." },
+      { question: "What is urine made of?", answer: "Mostly water, urea, and salts" },
+      { question: "How does the skin help with excretion?", answer: "Through sweating – it removes water, salts, and small amounts of urea." },
+      { question: "Describe how urea is made in the body.", answer: "Excess amino acids are broken down in the liver, producing urea as a waste product" },
+      { question: "Explain the role of the kidneys in water balance.", answer: "They adjust how much water is reabsorbed into the blood, keeping the body’s water levels stable." },
+      { question: "Name two things that pass from mother to baby through the placenta.", answer: "Oxygen, nutrients (like glucose)." },
+      { question: "How does smoking affect the foetus?", answer: "Reduces oxygen supply, can cause low birth weight or premature birth." },
+      { question: "Why is folic acid important during pregnancy?", answer: "It helps prevent birth defects in the baby’s spine and brain." },
+      { question: "What is the role of the umbilical cord?", answer: "Connects foetus to placenta → carries oxygen and nutrients in, and waste out." },
+      { question: "Why is transpiration important for plants?", answer: "Pulls water + minerals to leaves/Helps with cooling the plant" },
+    ];
+
+    const mathsCards = [
+      { question: "What is the formula for area of a triangle?", answer: "1/2 × base × height" },
+      { question: "Percentage change", answer: "(New number - Orignal Number)/Original x 100" },
+      { question: "Equation of a line", answer: "y = mx + c" },
+      { question: "What is the slope formula?", answer: "(y₂ - y₁) / (x₂ - x₁)" },
+      { question: "Fomula for interior angles", answer: "(n - 2) x 180" },
+      { question: "Exterior Angle", answer: "180(n - 2) / n" },
+      { question: "Formula for calculating the Mean", answer: "Total of values / Number of Values" },
+      { question: "Median (when the number of values are even)", answer: "Example. 1, 2, 3, 4, Median: 2+3 over 2 = 2.5" },
+      { question: "Mode", answer: "Most frequent value" },
+      { question: "Range", answer: "Highest Value - Lowest Value" },
+      { question: "Quadratic formula: (a + b)²", answer: "a² + 2ab + b²" },
+      { question: "Quadratic formula: (a - b)²", answer: "a² - 2ab + b²" },
+      { question: "Quadratic formula: (a + b)(a - b)", answer: "a² - b²" },
+      ];
+
+    const englishCards = [
+      { question: "Past Simple", answer: "Active: Subject + Past Simple Verb. Passive: Subject + is/are  +  past participle" },
+      { question: "Future Simple", answer: "Subject + will/won’t + infinitive verb" },
+      { question: "Future Continuous", answer: "Subject + will/won’t be + -ing form" },
+      { question: "Future Perfect", answer: "Subject + will/won’t have + past participle" },
+      { question: "Present Continuous", answer: "Subject + am/is/are + verb + -ing" },
+    ];
+
+    function renderSet(cards, containerId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      cards.forEach(card => {
+        const cardDiv = document.createElement("div");
+        cardDiv.className = "flashcard";
+        cardDiv.innerHTML = `<strong>${card.question}</strong><div class="answer">${card.answer}</div>`;
+        cardDiv.addEventListener("click", () => {
+          const ans = cardDiv.querySelector(".answer");
+          ans.style.display = ans.style.display === "block" ? "none" : "block";
+        });
+        container.appendChild(cardDiv);
+      });
+    }
+
+    document.getElementById("searchInput").addEventListener("input", function() {
+      const container = document.getElementById("flashcards");
+      container.innerHTML = "";
+      scienceCards.filter(card => card.question.toLowerCase().includes(this.value.toLowerCase())).forEach(card => {
+        const cardDiv = document.createElement("div");
+        cardDiv.className = "flashcard";
+        cardDiv.innerHTML = `<strong>${card.question}</strong><div class="answer">${card.answer}</div>`;
+        cardDiv.addEventListener("click", () => {
+          const ans = cardDiv.querySelector(".answer");
+          ans.style.display = ans.style.display === "block" ? "none" : "block";
+        });
+        container.appendChild(cardDiv);
+      });
+    });
+
+    renderSet(scienceCards, "flashcards");
+    renderSet(mathsCards, "mathFlashcards");
+    renderSet(englishCards, "englishFlashcards");
+  </script>
+</body>
+</html>
